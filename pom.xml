@@ -5,12 +5,23 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.springframework.build</groupId>
+    <groupId>tw.hyl.common</groupId>
 	<artifactId>aws-maven</artifactId>
 	<packaging>jar</packaging>
 	<version>5.0.0.BUILD-SNAPSHOT</version>
 	<name>Amazon Web Services S3 Maven Wagon Support</name>
 	<description>Standard Maven wagon support for s3:// urls</description>
+
+    <parent>
+      <groupId>org.sonatype.oss</groupId>
+      <artifactId>oss-parent</artifactId>
+      <version>7</version>
+    </parent>
+
+    <scm>
+      <developerConnection>scm:git:git://github.com/yunglin/aws-maven.git</developerConnection>
+      <url>http://github.com/yunglin/aws-maven</url>
+    </scm>
 
 	<properties>
 		<amazonaws.version>1.4.3</amazonaws.version>
@@ -165,19 +176,6 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
-		<repository>
-			<id>repository.springsource.release</id>
-			<name>SpringSource GA Repository</name>
-			<url>https://repo.springsource.org/libs-release-local</url>
-		</repository>
-		<snapshotRepository>
-			<id>repository.springsource.snapshot</id>
-			<name>SpringSource Snapshot Repository</name>
-			<url>https://repo.springsource.org/libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<url>https://github.com/SpringSource/aws-maven</url>
 
 	<inceptionYear>2007</inceptionYear>
@@ -189,11 +187,6 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-
-	<scm>
-		<connection>scm:git:https://github.com/SpringSource/aws-maven.git</connection>
-		<url>https://github.com/SpringSource/aws-maven</url>
-	</scm>
 
 	<organization>
 		<name>Spring Framework</name>

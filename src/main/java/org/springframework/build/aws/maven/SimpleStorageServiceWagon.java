@@ -16,25 +16,6 @@
 
 package org.springframework.build.aws.maven;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.maven.wagon.ResourceDoesNotExistException;
-import org.apache.maven.wagon.TransferFailedException;
-import org.apache.maven.wagon.authentication.AuthenticationException;
-import org.apache.maven.wagon.authentication.AuthenticationInfo;
-import org.apache.maven.wagon.proxy.ProxyInfoProvider;
-import org.apache.maven.wagon.repository.Repository;
-
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSCredentials;
@@ -48,6 +29,25 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
+
+import org.apache.maven.wagon.ResourceDoesNotExistException;
+import org.apache.maven.wagon.TransferFailedException;
+import org.apache.maven.wagon.authentication.AuthenticationException;
+import org.apache.maven.wagon.authentication.AuthenticationInfo;
+import org.apache.maven.wagon.proxy.ProxyInfoProvider;
+import org.apache.maven.wagon.repository.Repository;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * An implementation of the Maven Wagon interface that allows you to access the Amazon S3 service. URLs that reference

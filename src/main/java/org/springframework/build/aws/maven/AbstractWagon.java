@@ -16,9 +16,6 @@
 
 package org.springframework.build.aws.maven;
 
-import java.io.File;
-import java.util.List;
-
 import org.apache.maven.wagon.ConnectionException;
 import org.apache.maven.wagon.ResourceDoesNotExistException;
 import org.apache.maven.wagon.TransferFailedException;
@@ -33,6 +30,11 @@ import org.apache.maven.wagon.proxy.ProxyInfo;
 import org.apache.maven.wagon.proxy.ProxyInfoProvider;
 import org.apache.maven.wagon.repository.Repository;
 import org.apache.maven.wagon.resource.Resource;
+import org.codehaus.plexus.util.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 abstract class AbstractWagon implements Wagon {
 
@@ -171,7 +173,13 @@ abstract class AbstractWagon implements Wagon {
         Resource resource = new Resource(resourceName);
         this.transferListenerSupport.fireTransferInitiated(resource, TransferEvent.REQUEST_GET);
         this.transferListenerSupport.fireTransferStarted(resource, TransferEvent.REQUEST_GET);
-
+        if (destination.exists() == false) {
+            try {
+                FileUtils.forceMkdir(destination.getParentFile());
+            } catch (IOException e) {
+                throw new TransferFailedException("Failed to mk dir: " + destination, e);
+            }
+        }
         try {
             getResource(resourceName, destination, new StandardTransferProgress(resource, TransferEvent.REQUEST_GET, this.transferListenerSupport));
             this.transferListenerSupport.fireTransferCompleted(resource, TransferEvent.REQUEST_GET);
